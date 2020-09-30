@@ -16,6 +16,8 @@
  * @module calculator
  */
 module.exports = {
+  matcher: /^(-?\d{3}) ([+\-*\/]) (-?\d{3})$/,
+
   /**
    * Accepts an `expression` which is a string that is structured in the
    * following way:
@@ -41,8 +43,7 @@ module.exports = {
    *         could not be parsed
    */
   parse: function (expression) {
-    // TODO: Write a function that parses the given expression
-    return null;
+    return expression.match(this.matcher);
   },
 
   /**
@@ -54,8 +55,24 @@ module.exports = {
    *         be parsed
    */
   solve: function (expression) {
-    // TODO: Write a function that uses the `parse(expression)` function
-    //       to calculate the result
-    return 0;
+    const parsed = this.parse(expression);
+    if (parsed == null) {
+      return null;
+    }
+
+    const varA = parseInt(parsed[1]);
+    const varB = parseInt(parsed[3]);
+    const oper = parsed[2];
+
+    switch (oper) {
+      case "+":
+        return varA + varB;
+      case "-":
+        return varA - varB;
+      case "*":
+        return varA * varB;
+      case "/":
+        return varA / varB;
+    }
   },
 };
