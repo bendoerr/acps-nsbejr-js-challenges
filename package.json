@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "calc": "node -e \"require('./calculator').run()\"",
+    "high-low": "node -e \"require('./high-low').run()\""
   },
   "keywords": [],
   "author": "",
@@ -12,5 +14,8 @@
   "devDependencies": {
     "jest": "^26.4.2",
     "prettier": "^2.1.2"
+  },
+  "dependencies": {
+    "readline-sync": "^1.4.10"
   }
 }

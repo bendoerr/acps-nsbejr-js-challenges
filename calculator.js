@@ -58,4 +58,30 @@ module.exports = {
     //       to calculate the result
     return 0;
   },
+
+  /**
+   * The main run loop. Asks for expressions and solves to results.
+   *
+   * You can run this by typing "npm run calc" at the command line.
+   */
+  run: function () {
+    const readline = require("readline-sync");
+
+    while (true) {
+      const e = readline.question("Enter an expression or type 'stop': ");
+
+      if (e.toLowerCase() === "stop") {
+        console.log("Goodbye!");
+        break;
+      }
+
+      const result = this.solve(e);
+      if (result == null) {
+        console.log("Invalid expression");
+        continue;
+      }
+
+      console.log(`Result: ${result}`);
+    }
+  },
 };

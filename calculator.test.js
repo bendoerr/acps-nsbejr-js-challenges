@@ -1,5 +1,3 @@
-"use strict";
-
 const test_table = [
   { expr: "001 + 001", result: 2 },
   { expr: "111 + 111", result: 222 },
@@ -72,26 +70,30 @@ const test_table = [
 
 const calculator = require("./calculator");
 
-describe("parse rejects invalid inputs", () => {
-  test.each(test_table.filter((r) => r.result == null))("%o", (r) => {
-    expect(calculator.parse(r.expr)).toBeFalsy();
+describe("parse(expression)", () => {
+  describe("rejects invalid inputs", () => {
+    test.each(test_table.filter((r) => r.result == null))("%o", (r) => {
+      expect(calculator.parse(r.expr)).toBeFalsy();
+    });
+  });
+
+  describe("accepts valid inputs", () => {
+    test.each(test_table.filter((r) => r.result != null))("%o", (r) => {
+      expect(calculator.parse(r.expr)).toBeTruthy();
+    });
   });
 });
 
-describe("parse accepts valid inputs", () => {
-  test.each(test_table.filter((r) => r.result != null))("%o", (r) => {
-    expect(calculator.parse(r.expr)).toBeTruthy();
+describe("solve(expression)", () => {
+  describe("returns null for invalid inputs", () => {
+    test.each(test_table.filter((r) => r.result == null))("%o", (r) => {
+      expect(calculator.solve(r.expr)).toBeNull();
+    });
   });
-});
 
-describe("solve returns null for invalid inputs", () => {
-  test.each(test_table.filter((r) => r.result == null))("%o", (r) => {
-    expect(calculator.solve(r.expr)).toBeNull();
-  });
-});
-
-describe("solve computes the correct result", () => {
-  test.each(test_table.filter((r) => r.result != null))("%o", (r) => {
-    expect(calculator.solve(r.expr)).toBe(r.result);
+  describe("computes the correct result", () => {
+    test.each(test_table.filter((r) => r.result != null))("%o", (r) => {
+      expect(calculator.solve(r.expr)).toBe(r.result);
+    });
   });
 });
