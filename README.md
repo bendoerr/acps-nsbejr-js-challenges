@@ -152,3 +152,41 @@ npm run high-low
 Complete each `TODO` as described by the function documentation and use the
 tests in [high-low.test.js](high-low.test.js) as a guide.
 
+## ❓ Challenge #3: Input Validators
+
+There are three validator modules to implement. Each validator module has a 
+single function for you to implement. Each of the validator methods should return 
+true or false according to the validity of the method parameter.
+
+### 📲 Phone Number Validation
+
+The `validate(input)` method in [phone-number-validator.js](phone-number-validator.js)
+should return true if the input parameter is a valid North American phone number. See the method documentation for
+instructions.
+
+Similar to the prior challenges, you can run your tests as follows
+
+```shell
+npm test -- phone-number-validator.test.js
+```
+
+### 📥 Email Address Validation
+
+Similar to the phone number validator, the `validate` method in [email-validator.js](email-validator.js)
+should return true if the input parameter is a valid email address according to the description in the method
+documentation. This validator will verify input against some basic attributes of the email address specification.
+
+```shell
+npm test -- email-validator.test.js
+```
+
+### 🔑 Password Validation
+
+As you may have guessed, the `validate` method in [password-validator.js](password-validator.js) should return true if
+the input value represents a valid password as described in the method documentation, false otherwise.
+
+```shell
+npm test -- password-validator.test.js
+```
+
+
