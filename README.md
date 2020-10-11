@@ -161,8 +161,8 @@ true or false according to the validity of the method parameter.
 ### 📲 Phone Number Validation
 
 The `validate(input)` method in [phone-number-validator.js](phone-number-validator.js)
-should return true if the input parameter is a valid North American phone number. See the method documentation for
-instructions.
+should return an object with an error message if the input parameter is not valid North American phone number.
+See the method documentation for detailed instructions.
 
 Similar to the prior challenges, you can run your tests as follows
 
