@@ -75,53 +75,79 @@ const suffix = [
   { number: "234-626-1234", expected: null },
 ];
 
+// run all tests
 describe("validate(input)", () => {
-  test.each(suffix.filter((i) => i.expected))("Invalid suffix %o", (suffix) => {
-    expect(validator.validate(suffix.number).phoneNumber).toBe(suffix.expected);
-  });
-  test.each(suffix.filter((i) => !i.expected))("Valid suffix %o", (suffix) => {
-    expect(validator.validate(suffix.number).phoneNumber).toBeFalsy();
-  });
-  test.each(subscriber.filter((i) => i.expected))(
-    "Invalid subscriber %o",
-    (subscriber) => {
-      expect(validator.validate(subscriber.number).phoneNumber).toBe(
-        subscriber.expected
-      );
-    }
-  );
-  test.each(subscriber.filter((i) => !i.expected))(
-    "Valid subscriber %o",
-    (subscriber) => {
-      expect(validator.validate(subscriber.number).phoneNumber).toBeFalsy();
-    }
-  );
-  test.each(area_code.filter((i) => i.expected))(
-    "Invalid area code %o",
-    (area_code) => {
-      expect(validator.validate(area_code.number).phoneNumber).toBe(
-        area_code.expected
-      );
-    }
-  );
-  test.each(area_code.filter((i) => !i.expected))(
-    "Valid area code %o",
-    (area_code) => {
-      expect(validator.validate(area_code.number).phoneNumber).toBeFalsy();
-    }
-  );
-  test.each(format.filter((i) => i.expected))("Invalid format %o", (format) => {
-    expect(validator.validate(format.number).phoneNumber).toBe(format.expected);
-  });
-  test.each(format.filter((i) => !i.expected))("Valid format %o", (format) => {
-    expect(validator.validate(format.number).phoneNumber).toBeFalsy();
+
+  // invalid suffix tests
+  test.each(suffix.filter((i) => i.expected))
+  ("Invalid suffix %o", (i) => {
+    expect(validator.validate(i.number).phoneNumber).toBe(i.expected);
   });
 
-  test.each(required.filter((i) => i.expected))(
-    "Input required %o",
-    (required) => {
-      expect(validator.validate(required.number).phoneNumber).toBe(
-        required.expected
+  // valid suffix tests
+  test.each(suffix.filter((i) => !i.expected))
+  ("Valid suffix %o", (i) => {
+    expect(validator.validate(i.number).phoneNumber).toBeFalsy();
+  });
+
+  // invalid subscriber tests
+  test.each(subscriber.filter((i) => i.expected))
+  ("Invalid subscriber %o",
+    (i) => {
+      expect(validator.validate(i.number).phoneNumber).toBe(
+        i.expected
+      );
+    }
+  );
+
+  // valid subscriber tests
+  test.each(subscriber.filter((i) => !i.expected))
+  ("Valid subscriber %o",
+    (i) => {
+      expect(validator.validate(i.number).phoneNumber).toBeFalsy();
+    }
+  );
+
+  // invalid area code tests
+  test.each(area_code.filter((i) => i.expected))
+  ("Invalid area code %o",
+    (i) => {
+      expect(validator.validate(i.number).phoneNumber).toBe(
+        i.expected
+      );
+    }
+  );
+
+  // valid area code tests
+  test.each(area_code.filter((i) => !i.expected))
+  ("Valid area code %o",
+    (i) => {
+      expect(validator.validate(i.number).phoneNumber).toBeFalsy();
+    }
+  );
+
+  // invalid format tests
+  test.each(format.filter((i) => i.expected))
+  ("Invalid format %o",
+    (i) => {
+      expect(validator.validate(i.number).phoneNumber).toBe(i.expected);
+    }
+  );
+
+  // valid format tests
+  test.each(format.filter((i) => !i.expected))
+  ("Valid format %o",
+    (i) => {
+      expect(validator.validate(i.number).phoneNumber).toBeFalsy();
+   }
+  );
+
+  // required tests
+  test.each(required.filter((i) => i.expected))
+  ("Input required %o",
+    (i) => {
+      expect(validator.validate(i.number).phoneNumber).toBe(
+        i.expected
       );
     }
   );

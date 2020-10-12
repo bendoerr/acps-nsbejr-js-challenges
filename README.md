@@ -154,15 +154,54 @@ tests in [high-low.test.js](high-low.test.js) as a guide.
 
 ## ❓ Challenge #3: Input Validators
 
-There are three validator modules to implement. Each validator module has a 
-single function for you to implement. Each of the validator methods should return 
-true or false according to the validity of the method parameter.
+Consider the signup process for`QRTrace` ...
+
+**Q:**  Do we want users signing up with email addresses that clearly aren't valid?  What about verification links? Suppose a user just misses a single character in their address, e.g., `first.last@gmailcom`...
+
+> No.
+
+**Q:** Do we want users using super weak and insecure passwords, e.g.,`abc123`?
+
+> Also no.
+
+Providing a means of verifying the validity of user input is the basis for the challenged to follow.
+
+---
+
+There are three validator modules to implement, each with a single function for you to implement; `validate(input)`.  Each of the validators should construct and return a simple `Object` that describes the nature of the input's validity. 
+
+Take a look at Mozilla Developer page [Working with Objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects) for help understanding objects.
+
+One simple way to construct an `Object` in JavaScript is to just use brackets when initializing a variable.
+
+```javascript
+// A user or person Object...
+const creatorOfJavaSCript = {
+    firstName: "Brendan",
+    lastName: "Eich"
+}
+
+// A film?
+const odyssey = {
+  title: "2001: A Space Odyssey",
+  imdb: "https://www.imdb.com/title/tt0062622"
+}
+```
+Each validator's `validate` function as documentation describing what makes `input` valid or invalid. Be sure to read each method doc carefully!
+
+Each `validate` implementation should return an error `Object` to the following specification:
+
+ - If the function parameter `input` is considered valid per the requirements described in the code documentation, the `validate` method should return an *empty* `Object`
+ - If `input` is invalid, the error `Object` returned should contain a single attribute named according to the thing the validator is validating (e.g., `email`, `password`,`phoneNumber`). 
+
+For example, if the `validate` [email-validator.js](email-validator.js) function is called with an input that does not have an `@` in it, the `Object` returned should contain an attribute `email` with a message specific to the reason why it is invalid. Again, please read the documentation in each validator module carefully.
+
+None of the validator modules have a command line runner. Just code, run the tests, and repeat until they all pass.
+
 
 ### 📲 Phone Number Validation
 
-The `validate(input)` method in [phone-number-validator.js](phone-number-validator.js)
-should return an object with an error message if the input parameter is not valid North American phone number.
-See the method documentation for detailed instructions.
+The `validate(input)` method in [phone-number-validator.js](phone-number-validator.js) should return an object with an error message if the input parameter is not valid North American phone number.
 
 Similar to the prior challenges, you can run your tests as follows
 
@@ -172,9 +211,7 @@ npm test -- phone-number-validator.test.js
 
 ### 📥 Email Address Validation
 
-Similar to the phone number validator, the `validate` method in [email-validator.js](email-validator.js)
-should return true if the input parameter is a valid email address according to the description in the method
-documentation. This validator will verify input against some basic attributes of the email address specification.
+Similar to the phone number validator,  [email-validator.js](email-validator.js) will be checking the `input` parameter for some (not all!) of the basic bits and pieces that make up a valid email address.
 
 ```shell
 npm test -- email-validator.test.js
@@ -182,8 +219,7 @@ npm test -- email-validator.test.js
 
 ### 🔑 Password Validation
 
-As you may have guessed, the `validate` method in [password-validator.js](password-validator.js) should return true if
-the input value represents a valid password as described in the method documentation, false otherwise.
+And... yeah, you may have picked up on the pattern here – [password-validator.js](password-validator.js) will be have the exact same way as the email or phone number validators, but will check against the password validity criteria defined in this module's documentation.
 
 ```shell
 npm test -- password-validator.test.js
